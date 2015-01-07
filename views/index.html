@@ -1,0 +1,26 @@
+<!doctype html>
+<html ng-app="githubSearch">
+<head>
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css"></link>
+</head>
+<body>
+
+<div class="search-field" ng-controller="SearchController as search">
+  <input ng-model="parameters.language" />
+  <form ng-submit="doSearch(parameters)">
+    <input type="submit" value="submit"></input>
+  </form>
+</div>
+
+<hr/>
+
+<div class="search-results" ng-controller="SearchResultsController as results">
+  <ul>
+    <li ng-repeat="repo in results.repos"><a href="{{ repo.url }}">{{ repo.name }}</a></li>
+  </ul>
+</div>
+
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../app.js"></script>
+</body>
+</html>
