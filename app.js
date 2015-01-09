@@ -6,11 +6,15 @@
   /* service to call github's api */
   app.factory('Search', ['$http', function($http) {
     return { 
-      searchGithub: function(language) {
+      searchGithub: function(keywords, language, pushed, stars, forks) {
         /* build query string out of params */
-        var queryString = 'https://api.github.com/search/repositories?q=tetris+language:';
-        queryString += language;
-        queryString += '&sort=starts&order=desc';
+        var queryString = 'https://api.github.com/search/repositories?q=';
+        queryString += keywords;
+        queryString += ('+language:'+language);
+        queryString += ('+pushed:'+pushed);
+        queryString += ('+stars:'+stars);
+        queryString += ('+forks:'+forks);
+        queryString += ('&sort=starts&order=desc');
         console.log(queryString);
         return $http({
           method: 'get',
@@ -30,9 +34,9 @@
       });
     };
 
-    $scope.doSearch = function(parameters) {
+    $scope.doSearch = function(p) {
       /* use Search service to search github */
-      Search.searchGithub(parameters.language)
+      Search.searchGithub(p.keywords, p.language, p.pushed, p.stars, p.forks)
               .success(handleSearchSuccess);
     }
   }]);

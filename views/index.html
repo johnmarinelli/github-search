@@ -6,7 +6,11 @@
 <body>
 
 <div class="search-field" ng-controller="SearchController as search">
-  <input ng-model="parameters.language" />
+  <input ng-model="parameters.keywords" placeholder="keywords" />
+  <input ng-model="parameters.language" placeholder="language" />
+  <input ng-model="parameters.pushed" placeholder="last updated" />
+  <input ng-model="parameters.stars" placeholder="number of stars" />
+  <input ng-model="parameters.forks" placeholder="number of forks" />
   <form ng-submit="doSearch(parameters)">
     <input type="submit" value="submit"></input>
   </form>
