@@ -42,7 +42,26 @@
   }]);
   
   app.controller('SearchResultsController', ['$scope', 'Search', function($scope, Search) {
+    
+    this.init = function(scope, Search) {
+    $scope = scope;
+    $scope.results = {};
+    console.log($scope);
+    console.log(Search);
     /* set results to Search services' results object */
     $scope.results.repos = Search.searchGithubResults;
+    };
+  }]);
+
+  app.directive('searchResult', [ 'Search', function(Search) {
+    return {
+      restrict: 'E',
+      controller: 'SearchResultsController',
+      templateUrl: 'search-results.html',
+      link: function(scope, elements, attrs, searchResultsCtrl) {
+      console.log(Search);
+        searchResultsCtrl.init(scope, Search);
+      }
+    };
   }]);
 })();
