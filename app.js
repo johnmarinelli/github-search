@@ -9,6 +9,11 @@
       searchGithub: function(keywords, language, pushed, stars, forks) {
         /* build query string out of params */
         var queryString = 'https://api.github.com/search/repositories?q=';
+
+        pushed = '>2014-12-01';
+        stars = '<=10';
+        forks = '<=3';
+
         queryString += keywords;
         queryString += ('+language:'+language);
         queryString += ('+pushed:'+pushed);
@@ -42,26 +47,20 @@
   }]);
   
   app.controller('SearchResultsController', ['$scope', 'Search', function($scope, Search) {
-    
-    this.init = function(scope, Search) {
-    $scope = scope;
-    $scope.results = {};
-    console.log($scope);
-    console.log(Search);
-    /* set results to Search services' results object */
-    $scope.results.repos = Search.searchGithubResults;
-    };
-  }]);
-
-  app.directive('searchResult', [ 'Search', function(Search) {
-    return {
-      restrict: 'E',
-      controller: 'SearchResultsController',
-      templateUrl: 'search-results.html',
-      link: function(scope, elements, attrs, searchResultsCtrl) {
-      console.log(Search);
-        searchResultsCtrl.init(scope, Search);
-      }
-    };
+    $scope.results.repos = Search.searchGithubResults;    
   }]);
 })();
+
+(function() {
+  var app = angular.module('frontend', []);
+
+  /* language dropdown in search */
+  app.directive('languageDropdown', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'language_dropdown.html'
+    };
+  });
+}());
+
+var app = angular.module('Search', ['githubSearch', 'frontend']);

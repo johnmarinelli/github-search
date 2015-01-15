@@ -1,0 +1,9 @@
+.inline-block { display: inline-block; }
+.form-control { width: 33%; }
+
+select {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: none;
+  font-family: Courier;
+}

@@ -1,30 +1,70 @@
 <!doctype html>
-<html ng-app="githubSearch">
+<html ng-app="Search">
 <head>
-  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css"></link>
+  <link rel="stylesheet" href="../bower_components/bootstrap-css-only/css/bootstrap.min.css"></link>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/capital-city-style.css"></link>
+  <link rel="stylesheet" href="../styles/style.css"></link>
+  <!--[if lt IE 9]>
+  <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
 </head>
 <body>
 
-<div class="search-field" ng-controller="SearchController as search">
-  <input ng-model="parameters.keywords" placeholder="keywords" />
-  <input ng-model="parameters.language" placeholder="language" />
-  <input ng-model="parameters.pushed" placeholder="last updated" />
-  <input ng-model="parameters.stars" placeholder="number of stars" />
-  <input ng-model="parameters.forks" placeholder="number of forks" />
-  <form ng-submit="doSearch(parameters)">
-    <input type="submit" value="submit"></input>
-  </form>
+<div class="navbar navbar-fixed-top alt" data-spy="affix" data-offset-top="1000">
+  <div class="container">
+    <div class="navbar-header">
+      <a href="#" class="navbar-brand">Home</a>
+      <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar">
+      <ul class="nav navbar-nav">
+        <li><a href="#sec1">Section 1</a></li>
+        <li><a href="#sec2">Section 2</a></li>
+        <li><a href="#sec3">Section 3</a></li>
+        <li><a href="#sec4">Section 4</a></li>
+      </ul>
+    </div>
+   </div>
+</div>
+
+<div class="header alt vert">
+  <div class="container">
+    <h1>Github Project Finder</h1>
+      <p class="lead">Ever wanted to find a repo you could grow with from the beginning?</p>
+      <div>&nbsp;</div>
+
+      <div class="search-field" ng-controller="SearchController as search">
+        <input ng-model="parameters.keywords" placeholder="keywords" class="inline-block form-control" />
+        <language-dropdown></language-dropdown>
+        
+        <!--<input ng-model="parameters.pushed" placeholder="last updated" />
+        <input ng-model="parameters.stars" placeholder="number of stars" />
+        <input ng-model="parameters.forks" placeholder="number of forks" />-->
+        <form ng-submit="doSearch(parameters)">
+          <input type="submit" value="submit" class="btn btn-default btn-lg"></input>
+        </form>
+      </div>
+  </div>
 </div>
 
 <hr/>
-<search-result></search-result>
-<!--
-<div class="search-results" ng-controller="SearchResultsController as results">
-  <ul>
-    <li ng-repeat="repo in results.repos"><a href="{{ repo.url }}">{{ repo.name }}</a></li>
-  </ul>
+
+<div id="sec1" class="blurb">
+  <div class="search-results" ng-controller="SearchResultsController as results">
+    <ul>
+      <li ng-repeat="repo in results.repos">
+        <a href="{{ repo.html_url }}">{{ repo.name }}</a>
+      </li>
+    </ul>
+  </div>
 </div>
--->
+
+<script src="../bower_components/jquery-2.1.0.min/index.js"></script>
 <script src="../bower_components/angular/angular.js"></script>
 <script src="../app.js"></script>
 </body>
