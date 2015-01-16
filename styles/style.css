@@ -7,6 +7,7 @@
 .display-table { display: table; }
 .table-row { display: table-row; }
 .table-cell { display: table-cell; }
+.full-width { width: 100%; }
 
 input.keywords {
   border: medium none transparent !important;
@@ -32,6 +33,10 @@ select.language {
   border-bottom: solid white medium !important;
   padding: 0px;
   display: inline;
+}
+
+a.show-more {
+  font-family: "Voltaire", Arial, sans-serif;
 }
 
 a.show-more:hover {
@@ -65,6 +70,16 @@ form.search-form {
 
 form .optional-parameters {
   padding: 0px 25%;
+}
+
+.search-results {
+  padding: 25px 0px 100px 0px;
+}
+
+.table-cell.column-label {
+  font-family: "Voltaire", Arial, sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 @media(max-width: 979px) {

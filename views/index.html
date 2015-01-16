@@ -16,7 +16,7 @@
 <div class="navbar navbar-fixed-top alt" data-spy="affix" data-offset-top="1000">
   <div class="container">
     <div class="navbar-header">
-      <a href="#" class="navbar-brand">Home</a>
+      <a href="http://johnmarinelli.me" class="navbar-brand">Homepage</a>
       <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -27,13 +27,13 @@
       <ul class="nav navbar-nav">
         <li><a href="#sec1">Top</a></li>
         <li><a href="#sec2">About</a></li>
-        <li><a href="#sec3">Section 3</a></li>
+        <li><a href="#sec3">Credits And Contact</a></li>
       </ul>
     </div>
    </div>
 </div>
 
-<div class="header alt vert">
+<div class="header alt vert" id="sec1">
   <div class="container">
     <h1>Github Project Finder</h1>
       <p class="lead">Ever wanted to find a repo you could grow with from the beginning?</p>
@@ -46,11 +46,16 @@
             <br />
 
             <div ng-show="showOptionalParams" class="optional-parameters">
-              <input ng-model="parameters.pushed" placeholder="last updated" ng-pattern="/(=|<[>=]?|>=?)\d{4}-\d{2}-\d{2}/" class="optional-search-parameters" /> 
+              <label for="last-updated">Last Updated: </label> 
+              <input name="last-updated" ng-model="parameters.pushed" placeholder="last updated" ng-pattern="/(=|<[>=]?|>=?)\d{4}-\d{2}-\d{2}$/" class="optional-search-parameters" /> 
               <p class="input-format-instructions">Format: [inequality operator]YYYY-MM-DD Example: >=2014-12-31</p>
-              <input ng-model="parameters.stars" placeholder="number of stars" ng-pattern="/(=|<[>=]?|>=?)\d{1,3}/" class="optional-search-parameters" />
+
+              <label for="stars">Number of Stars: </label>
+              <input name="stars" ng-model="parameters.stars" placeholder="number of stars" ng-pattern="/(=|<[>=]?|>=?)\d{1,3}$/" class="optional-search-parameters" />
               <p class="input-format-instructions">Format: [inequality operator]XYZ Example: <10</p>
-              <input ng-model="parameters.forks" placeholder="number of forks" ng-pattern="/(=|<[>=]?|>=?)\d{1,3}/" class="optional-search-parameters" /> 
+
+              <label for="forks">Number of Forks: </label>
+              <input name="forks" ng-model="parameters.forks" placeholder="number of forks" ng-pattern="/(=|<[>=]?|>=?)\d{1,3}$/" class="optional-search-parameters" /> 
               <p class="input-format-instructions">Format: [inequality operator]XYZ Example >= 20</p>
             </div> 
 
@@ -59,7 +64,6 @@
             <br />
             <input type="submit" value="submit" class="btn btn-default btn-lg"></input>
           </fieldset>
-          form is {{ searchForm.$valid }}
         </form>
       </div>
   </div>
@@ -67,22 +71,21 @@
 
 <hr/>
 
-<div id="sec1" class="blurb">
+<div class="blurb">
   <div class="container">
     <div class="search-results" ng-controller="SearchResultsController as results">
-      <div class="display-table">
-        <div class="table-row">
-          <div class="table-cell">
+      <div class="display-table full-width">
+        <div class="table-row full-width">
+          <div class="table-cell column-label">
           Name
           </div>
-          <div class="table-cell">
+          <div class="table-cell column-label">
           Date Created
           </div>
-          <div class="table-cell">
+          <div class="table-cell column-label">
           Last Updated
           </div>
         </div>
-        <hr />
         <div class="table-row" ng-repeat="repo in results.repos">
           <div class="table-cell">
             <a href="{{ repo.html_url }}">{{ repo.name }}</a>
@@ -94,6 +97,46 @@
             {{ repo.updated_at | date }}
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="sec2" class="featurette">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h1>
+          Who is this for?
+        </h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p>
+          I made this little project firstly as an introductory Angular app.  However, I made it for beginners to the open-source ecosystem (such as myself) to have an easy to use tool for finding new repositories that they can begin contributing to.
+        </p>
+        <p>
+        This was a large problem I faced when I first started out with Github; I had always heard that contributing to an open source project would look great on resumes and portfolios.  On top of that, I would love to be a core contributor to an important project.  However, like anything, the process of contributing and the workflow of an open source project needs practice.  This project aims to solve the gap between beginner open sourcer to experienced contributor.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="blurb bright" id="sec3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h1>
+        Credits & Contact
+        </h1>
+        <p>
+        The theme I used is <a href="http://www.bootstrapzero.com/templates/85746">CapitalCity</a>.
+        </p>
+        <p>
+        If you like this app or have a crush on me, you can star it at <a href="http://github.com/johnmarinelli/github-search">my github</a>.  Alternately you can follow me on <a href="http//twitter.com">twitter</a> if you're into that kind of thing.
+        </p>
       </div>
     </div>
   </div>
