@@ -32,6 +32,11 @@
   }]);
 
   app.controller('SearchController', ['$scope', 'Search', function($scope, Search) {
+    $scope.showOptionalParams = false;
+    $scope.toggleOptionalParams = function() {
+      $scope.showOptionalParams = !$scope.showOptionalParams;
+    };
+
     var handleSearchSuccess = function(data, status) {
       data.items.forEach(function(repo) {
         /* push repos onto Search services' results object */

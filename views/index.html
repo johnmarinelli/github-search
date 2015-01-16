@@ -1,13 +1,15 @@
 <!doctype html>
-<html ng-app="Search">
+<html ng-app="Search" lang="en">
 <head>
   <link rel="stylesheet" href="../bower_components/bootstrap-css-only/css/bootstrap.min.css"></link>
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../styles/capital-city-style.css"></link>
+  <link rel="stylesheet" href="../bower_components/pure/pure-min.css">
   <link rel="stylesheet" href="../styles/style.css"></link>
   <!--[if lt IE 9]>
   <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
@@ -23,10 +25,9 @@
     </div>
     <div class="navbar-collapse collapse" id="navbar">
       <ul class="nav navbar-nav">
-        <li><a href="#sec1">Section 1</a></li>
-        <li><a href="#sec2">Section 2</a></li>
+        <li><a href="#sec1">Top</a></li>
+        <li><a href="#sec2">About</a></li>
         <li><a href="#sec3">Section 3</a></li>
-        <li><a href="#sec4">Section 4</a></li>
       </ul>
     </div>
    </div>
@@ -39,14 +40,26 @@
       <div>&nbsp;</div>
 
       <div class="search-field" ng-controller="SearchController as search">
-        <input ng-model="parameters.keywords" placeholder="keywords" class="inline-block form-control" />
-        <language-dropdown></language-dropdown>
-        
-        <!--<input ng-model="parameters.pushed" placeholder="last updated" />
-        <input ng-model="parameters.stars" placeholder="number of stars" />
-        <input ng-model="parameters.forks" placeholder="number of forks" />-->
-        <form ng-submit="doSearch(parameters)">
-          <input type="submit" value="submit" class="btn btn-default btn-lg"></input>
+        <form name="searchForm" ng-submit="searchForm.$valid && doSearch(parameters)" novalidate class="pure-form pure-form-stacked search-form" >
+          <fieldset>
+            <h2>I'd like to find a repository about <input ng-model="parameters.keywords" placeholder="keywords" class="keywords" required /> using language <language-dropdown></language-dropdown></h2>
+            <br />
+
+            <div ng-show="showOptionalParams" class="optional-parameters">
+              <input ng-model="parameters.pushed" placeholder="last updated" ng-pattern="/(=|<[>=]?|>=?)\d{4}-\d{2}-\d{2}/" class="optional-search-parameters" /> 
+              <p class="input-format-instructions">Format: [inequality operator]YYYY-MM-DD Example: >=2014-12-31</p>
+              <input ng-model="parameters.stars" placeholder="number of stars" ng-pattern="/(=|<[>=]?|>=?)\d{1,3}/" class="optional-search-parameters" />
+              <p class="input-format-instructions">Format: [inequality operator]XYZ Example: <10</p>
+              <input ng-model="parameters.forks" placeholder="number of forks" ng-pattern="/(=|<[>=]?|>=?)\d{1,3}/" class="optional-search-parameters" /> 
+              <p class="input-format-instructions">Format: [inequality operator]XYZ Example >= 20</p>
+            </div> 
+
+            <a class="white-text pointer show-more" ng-click="toggleOptionalParams()" ng-hide="showOptionalParams">Show more parameters</a>
+            <a class="white-text pointer show-more" ng-click="toggleOptionalParams()" ng-hide="!showOptionalParams">Hide more parameters</a>
+            <br />
+            <input type="submit" value="submit" class="btn btn-default btn-lg"></input>
+          </fieldset>
+          form is {{ searchForm.$valid }}
         </form>
       </div>
   </div>
@@ -55,12 +68,34 @@
 <hr/>
 
 <div id="sec1" class="blurb">
-  <div class="search-results" ng-controller="SearchResultsController as results">
-    <ul>
-      <li ng-repeat="repo in results.repos">
-        <a href="{{ repo.html_url }}">{{ repo.name }}</a>
-      </li>
-    </ul>
+  <div class="container">
+    <div class="search-results" ng-controller="SearchResultsController as results">
+      <div class="display-table">
+        <div class="table-row">
+          <div class="table-cell">
+          Name
+          </div>
+          <div class="table-cell">
+          Date Created
+          </div>
+          <div class="table-cell">
+          Last Updated
+          </div>
+        </div>
+        <hr />
+        <div class="table-row" ng-repeat="repo in results.repos">
+          <div class="table-cell">
+            <a href="{{ repo.html_url }}">{{ repo.name }}</a>
+          </div>
+          <div class="table-cell">
+            {{ repo.created_at | date }}
+          </div>
+          <div class="table-cell">
+            {{ repo.updated_at | date }}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

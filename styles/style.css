@@ -1,9 +1,74 @@
 .inline-block { display: inline-block; }
-.form-control { width: 33%; }
+.inline-block-important { display: inline-block !important; }
+.inline-important { display: inline !important; }
+.form-control { width: auto; }
+.white-text { color: white; }
+.pointer { cursor: pointer; }
+.display-table { display: table; }
+.table-row { display: table-row; }
+.table-cell { display: table-cell; }
 
-select {
-  padding: 6px 12px;
-  border-radius: 4px;
-  border: none;
-  font-family: Courier;
+input.keywords {
+  border: medium none transparent !important;
+  background: none repeat scroll 0% 0% transparent !important;
+  box-shadow: none !important;
+  border-bottom: white medium solid !important;
+  border-width: medium !important;
+  -moz-border-top-colors: none !important;
+  -moz-border-right-colors: none !important;
+  -moz-border-bottom-colors: none !important;
+  -moz-border-left-colors: none !important;
+  border-image: none !important;
+  border-color: transparent transparent white !important;
+  border-style: none none solid !important;
+  padding: 0px !important;
+  display: inline !important;
+}
+
+select.language {
+  background: none !important;
+  border-style: none !important;
+  box-shadow: none !important;
+  border-bottom: solid white medium !important;
+  padding: 0px;
+  display: inline;
+}
+
+a.show-more:hover {
+  color: black; 
+}
+
+p.input-format-instructions {
+  font-size: .8em;
+  color: white;
+  line-height: .9;
+}
+
+input.optional-search-parameters {
+  margin: 0.25em auto !important;
+  width: 66%;
+  border-width: 5px !important;
+}
+
+.ng-dirty.ng-invalid {
+  border-color: #fa787e !important;
+}
+
+.ng-dirty.ng-valid {
+  border-color: #78fa89 !important;
+}
+
+form.search-form {
+  /*width: 50%;*/
+  margin: 0px auto;
+}
+
+form .optional-parameters {
+  padding: 0px 25%;
+}
+
+@media(max-width: 979px) {
+  form.search-form {
+    width: 100%;
+  }
 }
