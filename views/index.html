@@ -16,7 +16,7 @@
 <div class="navbar navbar-fixed-top alt" data-spy="affix" data-offset-top="1000">
   <div class="container">
     <div class="navbar-header">
-      <a href="http://johnmarinelli.me" class="navbar-brand">Homepage</a>
+      <a href="http://johnmarinelli.me" class="navbar-brand">My Homepage</a>
       <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -25,9 +25,9 @@
     </div>
     <div class="navbar-collapse collapse" id="navbar">
       <ul class="nav navbar-nav">
-        <li><a href="#sec1">Top</a></li>
+        <li><a href="#sec1">Search</a></li>
         <li><a href="#sec2">About</a></li>
-        <li><a href="#sec3">Credits And Contact</a></li>
+        <li><a href="#sec3">Credits</a></li>
       </ul>
     </div>
    </div>
@@ -42,7 +42,7 @@
       <div class="search-field" ng-controller="SearchController as search">
         <form name="searchForm" ng-submit="searchForm.$valid && doSearch(parameters)" novalidate class="pure-form pure-form-stacked search-form" >
           <fieldset>
-            <h2>I'd like to find a repository about <input ng-model="parameters.keywords" placeholder="keywords" class="keywords" required /> using language <language-dropdown></language-dropdown></h2>
+            <h2 class="white-text">I'd like to find a repository about <input ng-model="parameters.keywords" placeholder="keywords" class="keywords" required /> using language <language-dropdown></language-dropdown></h2>
             <br />
 
             <div ng-show="showOptionalParams" class="optional-parameters">
@@ -129,13 +129,16 @@
     <div class="row">
       <div class="col-md-12 text-center">
         <h1>
-        Credits & Contact
+        Credits
         </h1>
         <p>
         The theme I used is <a href="http://www.bootstrapzero.com/templates/85746">CapitalCity</a>.
         </p>
         <p>
-        If you like this app or have a crush on me, you can star it at <a href="http://github.com/johnmarinelli/github-search">my github</a>.  Alternately you can follow me on <a href="http//twitter.com">twitter</a> if you're into that kind of thing.
+        If you like this app, you can star it at <a href="http://github.com/johnmarinelli/github-search">my github</a>.
+        </p>
+        <p>
+        Another cool app I found that is similar is <a href="http://24pullrequests.com">24 Pull Requests</a>.  It'll give you suggested projects based on your Github profile and programming interests.
         </p>
       </div>
     </div>
